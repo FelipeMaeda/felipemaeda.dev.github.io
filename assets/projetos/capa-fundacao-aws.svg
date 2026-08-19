@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" role="img" aria-label="Capa Fundação Cloud AWS">
+  <defs>
+    <linearGradient id="aws-bg" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#242522"/>
+      <stop offset="1" stop-color="#1d1d1b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="700" fill="url(#aws-bg)"/>
+  <!-- Ochre horizon -->
+  <path d="M0 540 Q800 460 1600 540 L1600 700 L0 700 Z" fill="#c9933b" opacity=".85"/>
+  <!-- Org tree -->
+  <g fill="none" stroke="#f5f3ef" stroke-width="2">
+    <path d="M800 210 L800 260 L400 260 L400 320"/>
+    <path d="M800 260 L800 320"/>
+    <path d="M800 260 L1200 260 L1200 320"/>
+  </g>
+  <g fill="#f5f3ef">
+    <rect x="720" y="150" width="160" height="60" rx="4"/>
+    <rect x="320" y="320" width="160" height="60" rx="4"/>
+    <rect x="720" y="320" width="160" height="60" rx="4"/>
+    <rect x="1120" y="320" width="160" height="60" rx="4"/>
+  </g>
+  <g font-family="Arial,sans-serif" fill="#1d1d1b" text-anchor="middle" font-size="17">
+    <text x="800" y="187">Management</text>
+    <text x="400" y="357">Log Archive</text>
+    <text x="800" y="357">Audit</text>
+    <text x="1200" y="357">Workloads</text>
+  </g>
+  <text x="80" y="110" font-family="Georgia,serif" font-size="52" fill="#f5f3ef">Fundação Cloud AWS</text>
+  <text x="80" y="150" font-family="Arial,sans-serif" font-size="20" fill="#e2b797">Landing Zone, segurança e conectividade híbrida via Direct Connect e Equinix Fabric.</text>
+  <!-- Direct connect line -->
+  <g fill="none" stroke="#e2b797" stroke-width="3" stroke-dasharray="8 6">
+    <path d="M100 600 Q400 480 800 500 T1500 600"/>
+  </g>
+</svg>

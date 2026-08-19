@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" role="img" aria-label="Capa Migração Zimbra">
+  <rect width="1600" height="700" fill="#e8ded3"/>
+  <!-- Cloud (source) -->
+  <g transform="translate(220 360)">
+    <path d="M-40 20 A40 40 0 0 1 -10 -50 A55 55 0 0 1 90 -35 A45 45 0 0 1 130 45 L-40 45 Z" fill="#fff" stroke="#1d1d1b" stroke-width="2"/>
+    <text x="45" y="20" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#1d1d1b">AWS</text>
+  </g>
+  <!-- Datacenter (target) -->
+  <g transform="translate(1230 300)">
+    <rect x="-90" y="0" width="180" height="140" fill="#fff" stroke="#1d1d1b" stroke-width="2"/>
+    <g stroke="#1d1d1b" stroke-width="2" fill="none">
+      <path d="M-90 40h180"/>
+      <path d="M-90 80h180"/>
+      <path d="M-90 120h180"/>
+    </g>
+    <g fill="#b85c3f">
+      <circle cx="-60" cy="20" r="5"/><circle cx="-60" cy="60" r="5"/><circle cx="-60" cy="100" r="5"/>
+    </g>
+    <text x="0" y="180" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#1d1d1b">Nuvem híbrida</text>
+  </g>
+  <!-- Migration arrow -->
+  <g fill="none" stroke="#b85c3f" stroke-width="4" stroke-dasharray="10 8">
+    <path d="M400 400 Q800 240 1080 360"/>
+  </g>
+  <polygon points="1070,345 1105,362 1070,378" fill="#b85c3f"/>
+  <!-- Envelope glyphs on route -->
+  <g fill="#1d1d1b">
+    <rect x="620" y="290" width="34" height="22" fill="#fff" stroke="#1d1d1b" stroke-width="2"/>
+    <path d="M620 290 L637 305 L654 290" stroke="#1d1d1b" fill="none"/>
+    <rect x="820" y="270" width="34" height="22" fill="#fff" stroke="#1d1d1b" stroke-width="2"/>
+    <path d="M820 270 L837 285 L854 270" stroke="#1d1d1b" fill="none"/>
+    <rect x="960" y="290" width="34" height="22" fill="#fff" stroke="#1d1d1b" stroke-width="2"/>
+    <path d="M960 290 L977 305 L994 290" stroke="#1d1d1b" fill="none"/>
+  </g>
+  <text x="80" y="130" font-family="Georgia,serif" font-size="52" fill="#1d1d1b">Migração de Clusters Zimbra</text>
+  <text x="80" y="170" font-family="Arial,sans-serif" font-size="20" fill="#666761">De AWS para plataforma de nuvem híbrida com continuidade operacional.</text>
+</svg>

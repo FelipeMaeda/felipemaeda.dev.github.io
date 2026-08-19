@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Estudo de caso: construção do primeiro cluster EKS, com infraestrutura automatizada, deploy via Ansible e observabilidade integrada.">
+  <meta name="theme-color" content="#f5f3ef">
+  <meta property="og:title" content="Primeiro Cluster EKS | Felipe Shinji Maeda">
+  <meta property="og:description" content="Construção do primeiro cluster EKS com Terraform, Ansible, Datadog e Dynatrace.">
+  <meta property="og:type" content="article">
+  <title>Primeiro Cluster EKS | Felipe Shinji Maeda</title>
+  <link rel="icon" href="../assets/projetos/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/projeto.css">
+  <script src="../js/projeto.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header" id="topo">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="Voltar ao portfólio">
+        <img src="../assets/projetos/logo.svg" alt="Logo FM" width="44" height="44">
+        <span><strong>Felipe Maeda</strong><small>Cloud Architect</small></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="main-menu" aria-expanded="false"><span></span><span></span></button>
+      <nav class="main-nav" id="main-menu" aria-label="Navegação principal">
+        <a href="../index.html#sobre">Sobre</a>
+        <a href="../index.html#competencias">Competências</a>
+        <a href="../index.html#projetos">Projetos</a>
+        <a href="./">Blog</a>
+        <a href="../index.html#experiencia">Experiência</a>
+        <a class="nav-cta" href="../index.html#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <article>
+      <header class="project-hero section">
+        <div class="container project-hero-grid">
+          <div class="reveal">
+            <a class="back-link" href="./">← Voltar ao blog</a>
+            <p class="overline"><span></span> Estudo de caso · AWS · Kubernetes</p>
+            <h1>Construindo o primeiro cluster EKS da companhia.</h1>
+            <p class="hero-lead">Liderança na construção do primeiro cluster EKS, com infraestrutura automatizada, deploy via Ansible e observabilidade integrada desde o dia zero.</p>
+          </div>
+          <dl class="project-facts reveal">
+            <div><dt>Empresa / contexto</dt><dd>Alelo</dd></div>
+            <div><dt>Período</dt><dd>2021 — 2022</dd></div>
+            <div><dt>Minha atuação</dt><dd>Analista Cloud e DevOps · Tech Lead do cluster</dd></div>
+            <div><dt>Principais tecnologias</dt><dd>EKS, Terraform, Ansible, Datadog, Dynatrace</dd></div>
+          </dl>
+        </div>
+      </header>
+
+      <figure class="container hero-image reveal">
+        <img src="../assets/projetos/capa-eks-alelo.svg" alt="Ilustração do primeiro cluster EKS">
+        <figcaption>Substitua a imagem por um diagrama real ou por um painel de métricas do cluster.</figcaption>
+      </figure>
+
+      <section class="section content-section" id="visao-geral">
+        <div class="container article-grid">
+          <aside class="article-nav reveal" aria-label="Conteúdo do estudo de caso">
+            <p>Nesta página</p>
+            <a href="#visao-geral">Visão geral</a>
+            <a href="#desafio">Desafio</a>
+            <a href="#papel">Meu papel</a>
+            <a href="#arquitetura">Arquitetura</a>
+            <a href="#implementacao">Implementação</a>
+            <a href="#decisoes">Decisões técnicas</a>
+            <a href="#resultados">Resultados</a>
+            <a href="#aprendizados">Aprendizados</a>
+          </aside>
+
+          <div class="article-body">
+            <section class="story-block reveal">
+              <p class="section-number">01 · Visão geral</p>
+              <h2>Do zero a uma plataforma reutilizável.</h2>
+              <p class="lead-paragraph">O objetivo era mais do que subir um cluster: era criar uma plataforma reaproveitável, com IaC, deploy automatizado e observabilidade prontos antes das primeiras aplicações entrarem.</p>
+              <p>[Descreva o contexto de forma pública: qual era o cenário antes do cluster, quais aplicações eram alvo e por que Kubernetes fazia sentido.]</p>
+              <div class="summary-grid">
+                <article><span>Problema</span><p>Aplicações crescendo sem uma plataforma de orquestração padronizada.</p></article>
+                <article><span>Solução</span><p>Cluster EKS provisionado por Terraform, com deploy via Ansible e observabilidade integrada.</p></article>
+                <article><span>Impacto</span><p>Fundação reutilizável para workloads Kubernetes com curva de adoção mais suave.</p></article>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="desafio">
+              <p class="section-number">02 · O desafio</p>
+              <h2>Kubernetes com governança, não como experimento.</h2>
+              <p>Precisávamos evitar o padrão de “cluster piloto que virou produção”. A primeira versão já deveria ter processos, monitoramento e um caminho claro para as squads consumirem.</p>
+              <blockquote>“Primeiro cluster não pode ser primeiro erro — o modelo escolhido aqui será replicado depois.”</blockquote>
+              <ul class="check-list">
+                <li>Definir padrões de rede, IAM e node groups.</li>
+                <li>Escolher stack de observabilidade e integrá-la desde o início.</li>
+                <li>Estabelecer um pipeline claro de deploy.</li>
+                <li>Documentar padrões para consumo por outras squads.</li>
+              </ul>
+            </section>
+
+            <section class="story-block reveal" id="papel">
+              <p class="section-number">03 · Meu papel</p>
+              <h2>Liderança técnica ponta a ponta.</h2>
+              <p>Fui responsável por conduzir a construção do cluster, definir padrões e formar parceria com times de aplicação. Trabalhei muito próximo do time de observabilidade para acertar dashboards e alertas.</p>
+              <div class="responsibility-list">
+                <div><b>01</b><p><strong>Arquitetura:</strong> desenho da VPC, cluster e integrações com outros serviços AWS.</p></div>
+                <div><b>02</b><p><strong>Implementação:</strong> Terraform modularizado, playbooks Ansible e configuração de add-ons.</p></div>
+                <div><b>03</b><p><strong>Adoção:</strong> onboarding das primeiras aplicações e transferência de conhecimento.</p></div>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="arquitetura">
+              <p class="section-number">04 · Arquitetura</p>
+              <h2>IaC, deploy e observabilidade lado a lado.</h2>
+              <p>Terraform provisiona a base, Ansible cuida da configuração e do deploy, e Datadog e Dynatrace observam desde o control plane até as aplicações. Uma peça só, planejada como camadas.</p>
+              <figure class="content-image">
+                <img src="../assets/projetos/arquitetura-eks-alelo.svg" alt="Diagrama simplificado do primeiro cluster EKS">
+                <figcaption>Figura 1 — Camadas de IaC, EKS, add-ons e observabilidade. Substitua em <code>assets/projetos/arquitetura-eks-alelo.svg</code>.</figcaption>
+              </figure>
+              <h3>Componentes principais</h3>
+              <div class="tech-grid">
+                <article><h4>Infraestrutura</h4><p>VPC dedicada, subnets em múltiplas AZs, IAM roles específicas e KMS para criptografia.</p></article>
+                <article><h4>EKS</h4><p>Control plane gerenciado, node groups por perfil de carga e add-ons essenciais.</p></article>
+                <article><h4>Deploy</h4><p>Ansible orquestra a promoção controlada de workloads.</p></article>
+                <article><h4>Observabilidade</h4><p>Datadog e Dynatrace com dashboards por serviço e alertas por SLO.</p></article>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="implementacao">
+              <p class="section-number">05 · Implementação</p>
+              <h2>Primeiro cluster, primeiros padrões.</h2>
+              <p>Fizemos a implementação por incrementos, entregando valor a cada semana e refinando os padrões conforme conversas com os times de aplicação.</p>
+              <ol class="steps">
+                <li><span>1</span><div><h3>Base de rede</h3><p>VPC, subnets, roteamento e endpoints privados.</p></div></li>
+                <li><span>2</span><div><h3>Cluster EKS</h3><p>Terraform provisiona control plane, IAM e node groups.</p></div></li>
+                <li><span>3</span><div><h3>Add-ons</h3><p>Ingress, DNS, cert-manager e observabilidade instalados por padrão.</p></div></li>
+                <li><span>4</span><div><h3>Deploy</h3><p>Playbooks Ansible promovem workloads pelos ambientes.</p></div></li>
+              </ol>
+              <figure class="content-image compact">
+                <img src="../assets/projetos/implementacao-placeholder.svg" alt="Espaço para screenshot do pipeline ou dashboard">
+                <figcaption>Figura 2 — Substitua por um print de pipeline, dashboard ou console (sem dados sensíveis).</figcaption>
+              </figure>
+            </section>
+
+            <section class="story-block reveal" id="decisoes">
+              <p class="section-number">06 · Decisões técnicas</p>
+              <h2>Escolhas para a primeira geração.</h2>
+              <p>Escolhas conservadoras em favor de estabilidade, com espaço para evoluir. As alternativas foram documentadas para eventual revisão.</p>
+              <div class="decision-table" role="table" aria-label="Decisões técnicas">
+                <div class="decision-row decision-head" role="row"><span>Decisão</span><span>Motivação</span><span>Trade-off</span></div>
+                <div class="decision-row" role="row"><span>EKS gerenciado</span><span>Menos operação sobre control plane.</span><span>Depende do roadmap do provedor.</span></div>
+                <div class="decision-row" role="row"><span>Ansible para deploy</span><span>Reuso de conhecimento e padrões dos times.</span><span>Menos idiomático para Kubernetes que operadores nativos.</span></div>
+                <div class="decision-row" role="row"><span>Datadog + Dynatrace</span><span>Cobertura de infra, APM e logs.</span><span>Duas ferramentas para manter alinhadas.</span></div>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="resultados">
+              <p class="section-number">07 · Resultados</p>
+              <h2>Fundação viva para os próximos clusters.</h2>
+              <p>O cluster passou a servir como referência técnica interna. Os padrões definidos aqui foram reaproveitados nas próximas iterações.</p>
+              <div class="results-grid">
+                <article><strong>Padrão</strong><p>Padrões técnicos reutilizáveis para novos clusters.</p></article>
+                <article><strong>Adoção</strong><p>Onboarding mais previsível das primeiras aplicações.</p></article>
+                <article><strong>Observabilidade</strong><p>Visibilidade end-to-end antes do primeiro incidente.</p></article>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="aprendizados">
+              <p class="section-number">08 · Aprendizados</p>
+              <h2>Documentar tanto quanto codar.</h2>
+              <p>Padrões só viram cultura quando as pessoas conseguem encontrá-los e entendê-los rapidamente. O tempo investido em documentação retornou várias vezes.</p>
+              <ul class="check-list warm-list">
+                <li>Observabilidade antes das aplicações, não depois.</li>
+                <li>Modularização do IaC pensada para reuso desde o início.</li>
+                <li>Documentação viva mantida junto do código.</li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <footer class="next-project">
+        <div class="container next-project-inner reveal">
+          <div><p>Próximo estudo de caso</p><h2>Migração de Clusters Zimbra</h2></div>
+          <a class="circle-link" href="migracao-zimbra.html" aria-label="Abrir próximo projeto">→</a>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="../index.html"><img src="../assets/projetos/logo.svg" alt="" width="38" height="38"><span><strong>Felipe Maeda</strong><small>Cloud Architect</small></span></a>
+      <p>© <span id="current-year"></span> Felipe Shinji Maeda.</p>
+      <a href="#topo">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+</body>
+</html>

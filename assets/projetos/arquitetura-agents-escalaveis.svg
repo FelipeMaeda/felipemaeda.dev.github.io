@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Arquitetura Agents Escaláveis">
+  <rect width="1200" height="720" fill="#f5f3ef"/>
+  <!-- Azure DevOps -->
+  <g fill="#fff" stroke="#1d1d1b" stroke-width="2">
+    <rect x="80" y="290" width="200" height="120" rx="4"/>
+  </g>
+  <text x="180" y="330" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#b85c3f" letter-spacing="2">AZURE DEVOPS</text>
+  <text x="180" y="360" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#1d1d1b">Pipelines</text>
+  <text x="180" y="385" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#666761">Envia jobs à fila</text>
+  <!-- Arrow -->
+  <g fill="none" stroke="#1d1d1b" stroke-width="2">
+    <path d="M280 350 L380 350"/>
+  </g>
+  <polygon points="380 344, 400 350, 380 356" fill="#1d1d1b"/>
+  <!-- KEDA -->
+  <g fill="#fff" stroke="#1d1d1b" stroke-width="2">
+    <rect x="400" y="290" width="200" height="120" rx="4"/>
+  </g>
+  <text x="500" y="330" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#b85c3f" letter-spacing="2">KEDA</text>
+  <text x="500" y="360" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#1d1d1b">ScaledObject</text>
+  <text x="500" y="385" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#666761">Escala pela fila</text>
+  <g fill="none" stroke="#1d1d1b" stroke-width="2">
+    <path d="M600 350 L700 350"/>
+  </g>
+  <polygon points="700 344, 720 350, 700 356" fill="#1d1d1b"/>
+  <!-- EKS + Karpenter -->
+  <g fill="#fff" stroke="#1d1d1b" stroke-width="2">
+    <rect x="720" y="180" width="400" height="360" rx="6"/>
+  </g>
+  <text x="920" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#b85c3f" letter-spacing="2">EKS · KARPENTER</text>
+  <!-- Pod grid -->
+  <g fill="#b85c3f">
+    <rect x="760" y="250" width="60" height="60"/>
+    <rect x="835" y="250" width="60" height="60"/>
+    <rect x="910" y="250" width="60" height="60"/>
+    <rect x="985" y="250" width="60" height="60"/>
+    <rect x="760" y="325" width="60" height="60"/>
+    <rect x="835" y="325" width="60" height="60"/>
+    <rect x="910" y="325" width="60" height="60"/>
+  </g>
+  <g fill="#fff" stroke="#1d1d1b">
+    <rect x="1060" y="250" width="45" height="60" stroke-dasharray="4 4"/>
+    <rect x="1060" y="325" width="45" height="60" stroke-dasharray="4 4"/>
+  </g>
+  <text x="900" y="430" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#666761">Agents autoservidos como pods</text>
+  <text x="900" y="455" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#666761">Karpenter provisiona nós conforme demanda</text>
+  <text x="900" y="500" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#1d1d1b">Podem escalar a zero fora do horário de pico</text>
+  <text x="600" y="670" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" fill="#666761">FIGURA 1 · FLUXO DE ESCALA DINÂMICA DE AGENTS</text>
+</svg>

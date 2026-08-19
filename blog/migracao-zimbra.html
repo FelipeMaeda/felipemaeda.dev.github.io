@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Estudo de caso: migração de clusters Zimbra da AWS para uma plataforma de nuvem híbrida com foco em continuidade operacional.">
+  <meta name="theme-color" content="#f5f3ef">
+  <meta property="og:title" content="Migração de Clusters Zimbra | Felipe Shinji Maeda">
+  <meta property="og:description" content="Migração de clusters Zimbra da AWS para nuvem híbrida com continuidade operacional.">
+  <meta property="og:type" content="article">
+  <title>Migração de Clusters Zimbra | Felipe Shinji Maeda</title>
+  <link rel="icon" href="../assets/projetos/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/projeto.css">
+  <script src="../js/projeto.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header" id="topo">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="Voltar ao portfólio">
+        <img src="../assets/projetos/logo.svg" alt="Logo FM" width="44" height="44">
+        <span><strong>Felipe Maeda</strong><small>Cloud Architect</small></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="main-menu" aria-expanded="false"><span></span><span></span></button>
+      <nav class="main-nav" id="main-menu" aria-label="Navegação principal">
+        <a href="../index.html#sobre">Sobre</a>
+        <a href="../index.html#competencias">Competências</a>
+        <a href="../index.html#projetos">Projetos</a>
+        <a href="./">Blog</a>
+        <a href="../index.html#experiencia">Experiência</a>
+        <a class="nav-cta" href="../index.html#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <article>
+      <header class="project-hero section">
+        <div class="container project-hero-grid">
+          <div class="reveal">
+            <a class="back-link" href="./">← Voltar ao blog</a>
+            <p class="overline"><span></span> Estudo de caso · Cloud · Migração</p>
+            <h1>Migrando clusters Zimbra sem interromper o correio.</h1>
+            <p class="hero-lead">Como planejamos e executamos a migração de clusters Zimbra da AWS para uma plataforma de nuvem híbrida, mantendo a continuidade do serviço em cada etapa.</p>
+          </div>
+          <dl class="project-facts reveal">
+            <div><dt>Empresa / contexto</dt><dd>Inova Tecnologias</dd></div>
+            <div><dt>Período</dt><dd>2020 — 2021</dd></div>
+            <div><dt>Minha atuação</dt><dd>Administrador de Sistemas Júnior</dd></div>
+            <div><dt>Principais tecnologias</dt><dd>Zimbra, Linux, AWS, Hybrid Cloud</dd></div>
+          </dl>
+        </div>
+      </header>
+
+      <figure class="container hero-image reveal">
+        <img src="../assets/projetos/capa-migracao-zimbra.svg" alt="Ilustração da migração de AWS para nuvem híbrida">
+        <figcaption>Substitua a imagem por um diagrama real do plano de migração ou uma foto autorizada.</figcaption>
+      </figure>
+
+      <section class="section content-section" id="visao-geral">
+        <div class="container article-grid">
+          <aside class="article-nav reveal" aria-label="Conteúdo do estudo de caso">
+            <p>Nesta página</p>
+            <a href="#visao-geral">Visão geral</a>
+            <a href="#desafio">Desafio</a>
+            <a href="#papel">Meu papel</a>
+            <a href="#arquitetura">Arquitetura</a>
+            <a href="#implementacao">Implementação</a>
+            <a href="#decisoes">Decisões técnicas</a>
+            <a href="#resultados">Resultados</a>
+            <a href="#aprendizados">Aprendizados</a>
+          </aside>
+
+          <div class="article-body">
+            <section class="story-block reveal">
+              <p class="section-number">01 · Visão geral</p>
+              <h2>Correio corporativo migrado com continuidade.</h2>
+              <p class="lead-paragraph">O projeto migrou clusters Zimbra de AWS para uma plataforma de nuvem híbrida. E-mail é um serviço com baixa tolerância a downtime — o plano precisava contemplar corte controlado e rollback.</p>
+              <p>[Contextualize aqui o cenário: quantas caixas, tipos de usuários e por que a migração fazia sentido — sem citar dados sensíveis.]</p>
+              <div class="summary-grid">
+                <article><span>Problema</span><p>Custo, dependência de fornecedor e necessidade de consolidação.</p></article>
+                <article><span>Solução</span><p>Nova plataforma híbrida com replicação e corte coordenado.</p></article>
+                <article><span>Impacto</span><p>Continuidade do serviço com nova base para evoluções seguintes.</p></article>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="desafio">
+              <p class="section-number">02 · O desafio</p>
+              <h2>Migrar e-mail é migrar reputação.</h2>
+              <p>Além do dado, e-mail carrega reputação de IP, filtragem, chaves de assinatura e integrações. Uma janela mal planejada respinga em toda a empresa.</p>
+              <blockquote>“Um corte de e-mail bem executado passa despercebido — esse era o objetivo.”</blockquote>
+              <ul class="check-list">
+                <li>Preservar caixas, filtros, contatos e regras.</li>
+                <li>Sincronizar dados de forma incremental até o corte.</li>
+                <li>Preparar rollback caso algum comportamento saísse do esperado.</li>
+                <li>Coordenar corte de DNS, MX e reputação de IP.</li>
+              </ul>
+            </section>
+
+            <section class="story-block reveal" id="papel">
+              <p class="section-number">03 · Meu papel</p>
+              <h2>Da execução ao acompanhamento do corte.</h2>
+              <p>Atuei diretamente na parte técnica: preparação da nova plataforma, sincronização progressiva e execução das janelas de corte. Também acompanhamos a estabilização pós-corte.</p>
+              <div class="responsibility-list">
+                <div><b>01</b><p><strong>Preparação:</strong> instalação e ajuste do Zimbra na nova plataforma.</p></div>
+                <div><b>02</b><p><strong>Migração:</strong> replicação incremental de mailstores e configurações.</p></div>
+                <div><b>03</b><p><strong>Corte:</strong> execução da janela, alteração de DNS e monitoramento intensivo.</p></div>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="arquitetura">
+              <p class="section-number">04 · Arquitetura</p>
+              <h2>Duas plataformas coexistindo até o corte.</h2>
+              <p>Origem em AWS e destino na nova plataforma coexistiram durante a janela de sincronização. O corte foi feito em blocos, com verificação a cada etapa.</p>
+              <figure class="content-image">
+                <img src="../assets/projetos/arquitetura-migracao-zimbra.svg" alt="Diagrama do plano de migração Zimbra">
+                <figcaption>Figura 1 — Fluxo de coexistência e corte. Substitua em <code>assets/projetos/arquitetura-migracao-zimbra.svg</code>.</figcaption>
+              </figure>
+              <h3>Componentes principais</h3>
+              <div class="tech-grid">
+                <article><h4>Origem</h4><p>Cluster Zimbra em AWS com mailstores, LDAP, MTA e proxies.</p></article>
+                <article><h4>Destino</h4><p>Nova plataforma híbrida com espelho da topologia e ajuste de capacidade.</p></article>
+                <article><h4>Migração</h4><p>Ferramentas de sync incremental e verificação de integridade.</p></article>
+                <article><h4>Corte</h4><p>Alteração de DNS/MX, monitoramento de fila e rollback preparado.</p></article>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="implementacao">
+              <p class="section-number">05 · Implementação</p>
+              <h2>Cronograma disciplinado, janelas curtas.</h2>
+              <p>Migramos em ondas, priorizando grupos com menor impacto e evoluindo até chegar nas caixas críticas. Cada onda tinha checklist de verificação e critérios de rollback.</p>
+              <ol class="steps">
+                <li><span>1</span><div><h3>Preparação</h3><p>Deploy da nova plataforma, testes de envio/recepção e integração com IdP.</p></div></li>
+                <li><span>2</span><div><h3>Sincronização</h3><p>Cópia inicial completa e replicação incremental das caixas.</p></div></li>
+                <li><span>3</span><div><h3>Janela de corte</h3><p>Alteração de DNS, atualização de MX e verificação de fluxo real.</p></div></li>
+                <li><span>4</span><div><h3>Estabilização</h3><p>Monitoramento contínuo, ajuste fino e desativação gradual da origem.</p></div></li>
+              </ol>
+              <figure class="content-image compact">
+                <img src="../assets/projetos/implementacao-placeholder.svg" alt="Espaço para print do plano ou console de administração">
+                <figcaption>Figura 2 — Substitua por print do plano de migração ou de um dashboard de saúde do serviço.</figcaption>
+              </figure>
+            </section>
+
+            <section class="story-block reveal" id="decisoes">
+              <p class="section-number">06 · Decisões técnicas</p>
+              <h2>Prever o pior, executar o simples.</h2>
+              <p>As decisões priorizaram previsibilidade. Cada janela pequena carregava menos risco do que uma janela grande — mesmo custando mais horas totais.</p>
+              <div class="decision-table" role="table" aria-label="Decisões técnicas">
+                <div class="decision-row decision-head" role="row"><span>Decisão</span><span>Motivação</span><span>Trade-off</span></div>
+                <div class="decision-row" role="row"><span>Migração em ondas</span><span>Menor blast radius por corte.</span><span>Mais rodadas de operação total.</span></div>
+                <div class="decision-row" role="row"><span>Origem em standby por dias</span><span>Rollback confiável em caso de problema.</span><span>Custo duplicado no período.</span></div>
+                <div class="decision-row" role="row"><span>Verificação por amostragem</span><span>Detectar problemas antes do usuário reportar.</span><span>Requer disciplina de checklist.</span></div>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="resultados">
+              <p class="section-number">07 · Resultados</p>
+              <h2>Corte silencioso, operação evoluída.</h2>
+              <p>O impacto visível para o usuário foi mínimo. Nos bastidores, a operação passou a rodar com melhor consolidação e uma base preparada para futuras evoluções.</p>
+              <div class="results-grid">
+                <article><strong>Continuidade</strong><p>Migração sem interrupções percebidas pelos usuários finais.</p></article>
+                <article><strong>Consolidação</strong><p>Infraestrutura padronizada na nova plataforma híbrida.</p></article>
+                <article><strong>Prontidão</strong><p>Base preparada para modernizações posteriores do stack de e-mail.</p></article>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="aprendizados">
+              <p class="section-number">08 · Aprendizados</p>
+              <h2>Migração é 20% técnica, 80% coordenação.</h2>
+              <p>O maior fator de sucesso foi a comunicação com stakeholders e o rigor no checklist. Todo o resto era consequência.</p>
+              <ul class="check-list warm-list">
+                <li>Ondas pequenas dão previsibilidade e reduzem risco.</li>
+                <li>Rollback ensaiado é rollback confiável.</li>
+                <li>Comunicação clara com stakeholders elimina metade dos problemas.</li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <footer class="next-project">
+        <div class="container next-project-inner reveal">
+          <div><p>Voltar ao início</p><h2>Todos os estudos de caso</h2></div>
+          <a class="circle-link" href="./" aria-label="Voltar para o blog">→</a>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="../index.html"><img src="../assets/projetos/logo.svg" alt="" width="38" height="38"><span><strong>Felipe Maeda</strong><small>Cloud Architect</small></span></a>
+      <p>© <span id="current-year"></span> Felipe Shinji Maeda.</p>
+      <a href="#topo">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+</body>
+</html>

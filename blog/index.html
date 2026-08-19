@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blog de Felipe Shinji Maeda — estudos de caso em Cloud, DevOps e Platform Engineering.">
+  <meta name="theme-color" content="#f5f3ef">
+  <meta property="og:title" content="Blog | Felipe Shinji Maeda">
+  <meta property="og:description" content="Estudos de caso em Cloud Architecture, DevOps e Platform Engineering.">
+  <meta property="og:type" content="website">
+  <title>Blog | Felipe Shinji Maeda</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/blog.css">
+  <script src="../js/blog.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header" id="topo">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="Voltar ao portfólio">
+        <img src="../assets/logo.svg" alt="Logo FM" width="44" height="44">
+        <span><strong>Felipe Maeda</strong><small>Cloud Architect</small></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="main-menu" aria-expanded="false"><span></span><span></span></button>
+      <nav class="main-nav" id="main-menu" aria-label="Navegação principal">
+        <a href="../index.html#sobre">Sobre</a>
+        <a href="../index.html#competencias">Competências</a>
+        <a href="../index.html#projetos">Projetos</a>
+        <a href="./" class="active">Blog</a>
+        <a href="../index.html#experiencia">Experiência</a>
+        <a class="nav-cta" href="../index.html#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero blog-hero">
+      <div class="container">
+        <div class="reveal">
+          <p class="overline"><span></span> Blog · Estudos de caso</p>
+          <h1>Escrevendo sobre <em>arquitetura</em>, plataformas e engenharia.</h1>
+          <p class="hero-lead">Notas técnicas sobre os projetos apresentados no portfólio. Cada texto é uma versão em construção — os placeholders estão prontos para eu ir lapidando o conteúdo aos poucos.</p>
+          <div class="blog-filters" aria-label="Filtros temáticos">
+            <span class="on">Todos</span>
+            <span>GCP</span>
+            <span>AWS</span>
+            <span>DevOps</span>
+            <span>Kubernetes</span>
+            <span>Migração</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="blog-list">
+      <div class="container">
+        <div class="blog-grid">
+
+          <a class="blog-card reveal" href="fundacao-cloud-gcp.html" aria-label="Ler: Fundação Cloud GCP">
+            <div class="cover"><img src="../assets/projetos/capa-fundacao-gcp.svg" alt="Diagrama hub-and-spoke da fundação GCP"></div>
+            <div class="body">
+              <p class="tag">GCP · Governança</p>
+              <h2>Fundação Cloud GCP</h2>
+              <p>Estrutura de organização, guardrails, conectividade privada e automação de projetos em uma fundação corporativa.</p>
+              <div class="meta"><span>Estudo de caso · Rascunho</span><span class="cta">Ler →</span></div>
+            </div>
+          </a>
+
+          <a class="blog-card reveal" href="fundacao-cloud-aws.html" aria-label="Ler: Fundação Cloud AWS">
+            <div class="cover"><img src="../assets/projetos/capa-fundacao-aws.svg" alt="Diagrama da AWS Organization com OUs"></div>
+            <div class="body">
+              <p class="tag aws">AWS · Plataforma</p>
+              <h2>Fundação Cloud AWS</h2>
+              <p>Landing Zone, segurança centralizada, operações e conectividade híbrida via Direct Connect e Equinix Fabric.</p>
+              <div class="meta"><span>Estudo de caso · Rascunho</span><span class="cta">Ler →</span></div>
+            </div>
+          </a>
+
+          <a class="blog-card reveal" href="plataforma-agents-escalaveis.html" aria-label="Ler: Plataforma de Agents Escaláveis">
+            <div class="cover"><img src="../assets/projetos/capa-agents-escalaveis.svg" alt="Grid de agents e pipeline"></div>
+            <div class="body">
+              <p class="tag devops">DevOps · Kubernetes</p>
+              <h2>Plataforma de Agents Escaláveis</h2>
+              <p>Self-hosted agents do Azure DevOps executando em EKS, com escala dinâmica orquestrada por Karpenter e KEDA.</p>
+              <div class="meta"><span>Estudo de caso · Rascunho</span><span class="cta">Ler →</span></div>
+            </div>
+          </a>
+
+          <a class="blog-card reveal" href="primeiro-cluster-eks.html" aria-label="Ler: Primeiro Cluster EKS da Alelo">
+            <div class="cover"><img src="../assets/projetos/capa-eks-alelo.svg" alt="Ilustração de um cluster Kubernetes"></div>
+            <div class="body">
+              <p class="tag eks">AWS · Kubernetes</p>
+              <h2>Primeiro Cluster EKS da Alelo</h2>
+              <p>Do provisionamento com Terraform ao deploy com Ansible, com observabilidade integrada via Datadog e Dynatrace.</p>
+              <div class="meta"><span>Estudo de caso · Rascunho</span><span class="cta">Ler →</span></div>
+            </div>
+          </a>
+
+          <a class="blog-card reveal" href="migracao-zimbra.html" aria-label="Ler: Migração de Clusters Zimbra">
+            <div class="cover"><img src="../assets/projetos/capa-migracao-zimbra.svg" alt="Rota de migração de AWS para nuvem híbrida"></div>
+            <div class="body">
+              <p class="tag migration">Cloud · Migração</p>
+              <h2>Migração de Clusters Zimbra</h2>
+              <p>Da AWS para uma plataforma de nuvem híbrida com foco em continuidade operacional e corte coordenado.</p>
+              <div class="meta"><span>Estudo de caso · Rascunho</span><span class="cta">Ler →</span></div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="brand footer-brand" href="../index.html"><img src="../assets/logo.svg" alt="" width="38" height="38"><span><strong>Felipe Maeda</strong><small>Cloud Architect</small></span></a>
+      <p>© <span id="current-year"></span> Felipe Shinji Maeda.</p>
+      <a href="#topo">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+</body>
+</html>

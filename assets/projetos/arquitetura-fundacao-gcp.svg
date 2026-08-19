@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Arquitetura Fundação Cloud GCP">
+  <rect width="1200" height="720" fill="#f5f3ef"/>
+  <g fill="#fff" stroke="#1d1d1b" stroke-width="2">
+    <rect x="80" y="120" width="1040" height="120" rx="6"/>
+    <rect x="80" y="280" width="500" height="150" rx="6"/>
+    <rect x="620" y="280" width="500" height="150" rx="6"/>
+    <rect x="80" y="470" width="1040" height="140" rx="6"/>
+  </g>
+  <g font-family="Arial,sans-serif" fill="#1d1d1b">
+    <text x="105" y="150" font-size="14" fill="#b85c3f" letter-spacing="2">CAMADA DE GOVERNANÇA</text>
+    <text x="105" y="185" font-size="22">Organization Policies · IAM · Guardrails · Auditoria</text>
+    <text x="105" y="215" font-size="14" fill="#666761">Controle central de políticas aplicadas a todos os projetos.</text>
+
+    <text x="105" y="310" font-size="14" fill="#b85c3f" letter-spacing="2">FUNDAÇÃO</text>
+    <text x="105" y="345" font-size="20">Shared VPC · Cloud DNS · Interconnect</text>
+    <text x="105" y="375" font-size="14" fill="#666761">Rede privada centralizada e conectividade híbrida.</text>
+    <text x="105" y="405" font-size="14" fill="#666761">Terraform mantém estado versionado.</text>
+
+    <text x="645" y="310" font-size="14" fill="#b85c3f" letter-spacing="2">SEGURANÇA</text>
+    <text x="645" y="345" font-size="20">SCC · KMS · Secret Manager · VPC-SC</text>
+    <text x="645" y="375" font-size="14" fill="#666761">Detecção, criptografia e perímetros de dados.</text>
+    <text x="645" y="405" font-size="14" fill="#666761">Logs centralizados no projeto de auditoria.</text>
+
+    <text x="105" y="500" font-size="14" fill="#b85c3f" letter-spacing="2">WORKLOADS</text>
+    <text x="105" y="535" font-size="20">Projetos por app · GKE · Cloud Run · BigQuery</text>
+    <text x="105" y="565" font-size="14" fill="#666761">Cada aplicação em seu próprio projeto, provisionado por pipeline.</text>
+    <text x="105" y="595" font-size="14" fill="#666761">Herda políticas, rede e observabilidade da fundação.</text>
+  </g>
+  <text x="600" y="680" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" fill="#666761">FIGURA 1 · SUBSTITUA POR UM DIAGRAMA REAL SEM DADOS SENSÍVEIS</text>
+</svg>

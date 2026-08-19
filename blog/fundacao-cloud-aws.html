@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Estudo de caso: fundação Cloud AWS com Landing Zone, segurança e conectividade híbrida via Direct Connect e Equinix Fabric.">
+  <meta name="theme-color" content="#f5f3ef">
+  <meta property="og:title" content="Fundação Cloud AWS | Felipe Shinji Maeda">
+  <meta property="og:description" content="Landing Zone, operações, segurança e conectividade híbrida em AWS.">
+  <meta property="og:type" content="article">
+  <title>Fundação Cloud AWS | Felipe Shinji Maeda</title>
+  <link rel="icon" href="../assets/projetos/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/projeto.css">
+  <script src="../js/projeto.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header" id="topo">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="Voltar ao portfólio">
+        <img src="../assets/projetos/logo.svg" alt="Logo FM" width="44" height="44">
+        <span><strong>Felipe Maeda</strong><small>Cloud Architect</small></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="main-menu" aria-expanded="false"><span></span><span></span></button>
+      <nav class="main-nav" id="main-menu" aria-label="Navegação principal">
+        <a href="../index.html#sobre">Sobre</a>
+        <a href="../index.html#competencias">Competências</a>
+        <a href="../index.html#projetos">Projetos</a>
+        <a href="./">Blog</a>
+        <a href="../index.html#experiencia">Experiência</a>
+        <a class="nav-cta" href="../index.html#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <article>
+      <header class="project-hero section">
+        <div class="container project-hero-grid">
+          <div class="reveal">
+            <a class="back-link" href="./">← Voltar ao blog</a>
+            <p class="overline"><span></span> Estudo de caso · Cloud Foundation</p>
+            <h1>Fundação Cloud AWS com conectividade multi-cloud.</h1>
+            <p class="hero-lead">Landing Zone estruturada, operações padronizadas, segurança centralizada e conectividade híbrida com o on-premises e outras clouds via Direct Connect e Equinix Fabric.</p>
+          </div>
+          <dl class="project-facts reveal">
+            <div><dt>Empresa / contexto</dt><dd>Projeto corporativo</dd></div>
+            <div><dt>Período</dt><dd>2023 — Atual</dd></div>
+            <div><dt>Minha atuação</dt><dd>Cloud Architect · Operations, Landing Zone e Security</dd></div>
+            <div><dt>Principais tecnologias</dt><dd>AWS Organizations, Terraform, Transit Gateway, Direct Connect, Equinix Fabric</dd></div>
+          </dl>
+        </div>
+      </header>
+
+      <figure class="container hero-image reveal">
+        <img src="../assets/projetos/capa-fundacao-aws.svg" alt="Diagrama da AWS Organization com OUs e conectividade">
+        <figcaption>Substitua por um diagrama real da sua organização, sem informações sensíveis.</figcaption>
+      </figure>
+
+      <section class="section content-section" id="visao-geral">
+        <div class="container article-grid">
+          <aside class="article-nav reveal" aria-label="Conteúdo do estudo de caso">
+            <p>Nesta página</p>
+            <a href="#visao-geral">Visão geral</a>
+            <a href="#desafio">Desafio</a>
+            <a href="#papel">Meu papel</a>
+            <a href="#arquitetura">Arquitetura</a>
+            <a href="#implementacao">Implementação</a>
+            <a href="#decisoes">Decisões técnicas</a>
+            <a href="#resultados">Resultados</a>
+            <a href="#aprendizados">Aprendizados</a>
+          </aside>
+
+          <div class="article-body">
+            <section class="story-block reveal">
+              <p class="section-number">01 · Visão geral</p>
+              <h2>Uma base AWS pensada para receber workloads em escala.</h2>
+              <p class="lead-paragraph">A fundação AWS foi construída para receber cargas críticas com padrões claros de operação, segurança, rede e adoção. O objetivo era eliminar retrabalho e criar uma superfície previsível para os times de aplicação.</p>
+              <p>[Descreva aqui o contexto: qual era a maturidade AWS antes do projeto, quais times estavam envolvidos e por que a fundação era prioridade.]</p>
+              <div class="summary-grid">
+                <article><span>Problema</span><p>Ambientes AWS crescendo sem estrutura, com esforço manual para cada nova conta.</p></article>
+                <article><span>Solução</span><p>Landing Zone versionada, guardrails ativos e conectividade híbrida padronizada.</p></article>
+                <article><span>Impacto</span><p>Onboarding de contas e workloads mais previsível, seguro e auditável.</p></article>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="desafio">
+              <p class="section-number">02 · O desafio</p>
+              <h2>Múltiplas contas, várias regiões, muitos caminhos.</h2>
+              <p>Precisávamos suportar contas em várias regiões AWS, conectividade com o on-premises e integração com outras clouds. Tudo isso sem transformar o time de plataforma no único ponto por onde qualquer coisa passa.</p>
+              <blockquote>“Padronizar sem centralizar a ponto de virar gargalo — esse foi o equilíbrio buscado.”</blockquote>
+              <ul class="check-list">
+                <li>Estrutura organizacional que reflita segurança, redes e workloads.</li>
+                <li>Conectividade híbrida confiável para cargas críticas.</li>
+                <li>Guardrails contra derivas de configuração sem travar squads.</li>
+                <li>Operação com runbooks, monitoramento e ownership definidos.</li>
+              </ul>
+            </section>
+
+            <section class="story-block reveal" id="papel">
+              <p class="section-number">03 · Meu papel</p>
+              <h2>Atuação nas três frentes principais.</h2>
+              <p>Participei das frentes de Operations, Landing Zone e Security, além de contribuir com a conectividade híbrida e multi-cloud. Trabalhei próximo a redes, segurança e produtos.</p>
+              <div class="responsibility-list">
+                <div><b>01</b><p><strong>Operations:</strong> práticas, runbooks, monitoramento e onboarding operacional das contas.</p></div>
+                <div><b>02</b><p><strong>Landing Zone:</strong> IaC, organização, guardrails e templates de contas.</p></div>
+                <div><b>03</b><p><strong>Security:</strong> baseline de identidade, criptografia, logging centralizado e detecção.</p></div>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="arquitetura">
+              <p class="section-number">04 · Arquitetura</p>
+              <h2>Organizada em OUs com um hub de rede dedicado.</h2>
+              <p>A organização AWS é dividida em OUs por responsabilidade — segurança, fundações e workloads. Um hub de rede próprio concentra a conectividade híbrida e a rota para outras clouds.</p>
+              <figure class="content-image">
+                <img src="../assets/projetos/arquitetura-fundacao-aws.svg" alt="Diagrama da AWS Organization com OUs e conectividade">
+                <figcaption>Figura 1 — Estrutura de OUs e conectividade. Substitua em <code>assets/projetos/arquitetura-fundacao-aws.svg</code>.</figcaption>
+              </figure>
+              <h3>Componentes principais</h3>
+              <div class="tech-grid">
+                <article><h4>Organization &amp; Accounts</h4><p>AWS Organizations, SCPs, contas para Log Archive, Audit, Network e Workloads.</p></article>
+                <article><h4>Rede</h4><p>Transit Gateway, VPCs padronizadas, resolução DNS híbrida e roteamento centralizado.</p></article>
+                <article><h4>Conectividade híbrida</h4><p>Direct Connect com Equinix Fabric para on-premises e outras clouds.</p></article>
+                <article><h4>Segurança &amp; Observabilidade</h4><p>Config, CloudTrail, GuardDuty, Security Hub e logs consolidados.</p></article>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="implementacao">
+              <p class="section-number">05 · Implementação</p>
+              <h2>Do baseline ao onboarding automatizado.</h2>
+              <p>A implementação seguiu uma trilha clara: primeiro os fundamentos, depois automação de contas e por fim onboarding de workloads reais. Cada etapa foi validada com pilotos.</p>
+              <ol class="steps">
+                <li><span>1</span><div><h3>Baseline</h3><p>Organizations, contas base, guardrails, IAM Identity Center e logging.</p></div></li>
+                <li><span>2</span><div><h3>Rede</h3><p>Transit Gateway, VPCs padronizadas e conectividade com o on-premises.</p></div></li>
+                <li><span>3</span><div><h3>Automação</h3><p>Pipelines para criar novas contas, aplicar baseline e integrar com observabilidade.</p></div></li>
+                <li><span>4</span><div><h3>Onboarding</h3><p>Migração de workloads existentes e onboarding de novas iniciativas.</p></div></li>
+              </ol>
+              <figure class="content-image compact">
+                <img src="../assets/projetos/implementacao-placeholder.svg" alt="Espaço temporário para screenshot do console ou pipeline">
+                <figcaption>Figura 2 — Adicione aqui um print sem dados sensíveis do pipeline ou dashboard.</figcaption>
+              </figure>
+            </section>
+
+            <section class="story-block reveal" id="decisoes">
+              <p class="section-number">06 · Decisões técnicas</p>
+              <h2>Padronizar o que dá — dar liberdade no resto.</h2>
+              <p>Documentamos as decisões críticas para revisitá-las quando o contexto mudar. Nem toda escolha é permanente, e todas têm um custo.</p>
+              <div class="decision-table" role="table" aria-label="Decisões técnicas">
+                <div class="decision-row decision-head" role="row"><span>Decisão</span><span>Motivação</span><span>Trade-off</span></div>
+                <div class="decision-row" role="row"><span>Transit Gateway centralizado</span><span>Rota unificada entre contas e regiões.</span><span>Ponto crítico que exige capacidade e disponibilidade planejadas.</span></div>
+                <div class="decision-row" role="row"><span>Equinix Fabric</span><span>Conectividade multi-cloud sem múltiplos DXs físicos.</span><span>Dependência de fornecedor adicional.</span></div>
+                <div class="decision-row" role="row"><span>SCPs preventivos</span><span>Bloquear ações inseguras antes de elas acontecerem.</span><span>Exige exceções bem documentadas para casos legítimos.</span></div>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="resultados">
+              <p class="section-number">07 · Resultados</p>
+              <h2>Ambientes mais previsíveis e auditáveis.</h2>
+              <p>Os principais resultados aparecem quando um novo time entra: menos dúvidas, menos esforço manual e um caminho conhecido para chegar em produção.</p>
+              <div class="results-grid">
+                <article><strong>Escala</strong><p>Contas e workloads adicionados sem retrabalho no baseline.</p></article>
+                <article><strong>Segurança</strong><p>Postura consistente com detecção e resposta centralizadas.</p></article>
+                <article><strong>Conectividade</strong><p>Rotas híbridas e multi-cloud padronizadas para as squads.</p></article>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="aprendizados">
+              <p class="section-number">08 · Aprendizados</p>
+              <h2>Reflexões que vão para os próximos projetos.</h2>
+              <p>O maior ganho não foi técnico, foi de método. Ter clareza sobre ownership entre plataforma, segurança e redes destravou muita coisa.</p>
+              <ul class="check-list warm-list">
+                <li>Definir contratos claros entre times antes do primeiro sprint técnico.</li>
+                <li>Investir em pipelines de teste para infra antes do primeiro incidente.</li>
+                <li>Manter documentação viva junto com o IaC, não em ferramenta separada.</li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <footer class="next-project">
+        <div class="container next-project-inner reveal">
+          <div><p>Próximo estudo de caso</p><h2>Plataforma de Agents Escaláveis</h2></div>
+          <a class="circle-link" href="plataforma-agents-escalaveis.html" aria-label="Abrir próximo projeto">→</a>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="../index.html"><img src="../assets/projetos/logo.svg" alt="" width="38" height="38"><span><strong>Felipe Maeda</strong><small>Cloud Architect</small></span></a>
+      <p>© <span id="current-year"></span> Felipe Shinji Maeda.</p>
+      <a href="#topo">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Estudo de caso: self-hosted agents do Azure DevOps escalando dinamicamente em EKS com Karpenter e KEDA.">
+  <meta name="theme-color" content="#f5f3ef">
+  <meta property="og:title" content="Plataforma de Agents Escaláveis | Felipe Shinji Maeda">
+  <meta property="og:description" content="Self-hosted agents Azure DevOps em EKS com escala automática por Karpenter e KEDA.">
+  <meta property="og:type" content="article">
+  <title>Plataforma de Agents Escaláveis | Felipe Shinji Maeda</title>
+  <link rel="icon" href="../assets/projetos/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/projeto.css">
+  <script src="../js/projeto.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header" id="topo">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="Voltar ao portfólio">
+        <img src="../assets/projetos/logo.svg" alt="Logo FM" width="44" height="44">
+        <span><strong>Felipe Maeda</strong><small>Cloud Architect</small></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="main-menu" aria-expanded="false"><span></span><span></span></button>
+      <nav class="main-nav" id="main-menu" aria-label="Navegação principal">
+        <a href="../index.html#sobre">Sobre</a>
+        <a href="../index.html#competencias">Competências</a>
+        <a href="../index.html#projetos">Projetos</a>
+        <a href="./">Blog</a>
+        <a href="../index.html#experiencia">Experiência</a>
+        <a class="nav-cta" href="../index.html#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <article>
+      <header class="project-hero section">
+        <div class="container project-hero-grid">
+          <div class="reveal">
+            <a class="back-link" href="./">← Voltar ao blog</a>
+            <p class="overline"><span></span> Estudo de caso · DevOps · Kubernetes</p>
+            <h1>Agents Azure DevOps escalando conforme a fila de builds.</h1>
+            <p class="hero-lead">Como transformamos uma frota estática de agents em uma plataforma elástica sobre EKS, aumentando e diminuindo a capacidade em minutos conforme a demanda dos pipelines.</p>
+          </div>
+          <dl class="project-facts reveal">
+            <div><dt>Empresa / contexto</dt><dd>Plataforma DevOps corporativa</dd></div>
+            <div><dt>Período</dt><dd>2023 — Atual</dd></div>
+            <div><dt>Minha atuação</dt><dd>Platform / DevOps Engineer</dd></div>
+            <div><dt>Principais tecnologias</dt><dd>EKS, Karpenter, KEDA, Azure DevOps, Terraform</dd></div>
+          </dl>
+        </div>
+      </header>
+
+      <figure class="container hero-image reveal">
+        <img src="../assets/projetos/capa-agents-escalaveis.svg" alt="Grid de agents e pipeline representando escala dinâmica">
+        <figcaption>Substitua a imagem por um esquema real ou um dashboard com métricas de escala.</figcaption>
+      </figure>
+
+      <section class="section content-section" id="visao-geral">
+        <div class="container article-grid">
+          <aside class="article-nav reveal" aria-label="Conteúdo do estudo de caso">
+            <p>Nesta página</p>
+            <a href="#visao-geral">Visão geral</a>
+            <a href="#desafio">Desafio</a>
+            <a href="#papel">Meu papel</a>
+            <a href="#arquitetura">Arquitetura</a>
+            <a href="#implementacao">Implementação</a>
+            <a href="#decisoes">Decisões técnicas</a>
+            <a href="#resultados">Resultados</a>
+            <a href="#aprendizados">Aprendizados</a>
+          </aside>
+
+          <div class="article-body">
+            <section class="story-block reveal">
+              <p class="section-number">01 · Visão geral</p>
+              <h2>Pipelines rápidos, sem manter agents ociosos.</h2>
+              <p class="lead-paragraph">A operação em Azure DevOps sofria com filas em horários de pico e agents subutilizados fora do expediente. A proposta foi migrar para uma plataforma elástica sobre Kubernetes, escalando pods e nós conforme a fila real.</p>
+              <p>[Complete com o contexto: quantos pipelines, tipos de tecnologia, horários de pico e restrições da operação anterior.]</p>
+              <div class="summary-grid">
+                <article><span>Problema</span><p>Filas grandes em pico e capacidade ociosa em horários fora do expediente.</p></article>
+                <article><span>Solução</span><p>Agents self-hosted em EKS, escalados por KEDA e nós por Karpenter.</p></article>
+                <article><span>Impacto</span><p>Elasticidade sob demanda, melhor uso de recursos e experiência mais previsível.</p></article>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="desafio">
+              <p class="section-number">02 · O desafio</p>
+              <h2>Balancear performance percebida e custo.</h2>
+              <p>Precisávamos garantir que builds importantes não esperassem em fila, mas sem manter um exército de VMs ligadas o tempo todo. Também era essencial preservar a integração com Azure DevOps como está.</p>
+              <blockquote>“Escalar em minutos, custar pelo que realmente foi usado, sem reescrever pipelines.”</blockquote>
+              <ul class="check-list">
+                <li>Suportar múltiplos tipos de agente (Java, Node, Python, mobile).</li>
+                <li>Escalar horizontal e verticalmente conforme a fila.</li>
+                <li>Manter isolamento de credenciais e artefatos entre execuções.</li>
+                <li>Fornecer métricas claras para o time de plataforma.</li>
+              </ul>
+            </section>
+
+            <section class="story-block reveal" id="papel">
+              <p class="section-number">03 · Meu papel</p>
+              <h2>Do desenho à operação da plataforma.</h2>
+              <p>Liderei o desenho da solução, escrevi os módulos de infraestrutura e configurei a integração com Azure DevOps. Também definimos as métricas e alertas com o time de observabilidade.</p>
+              <div class="responsibility-list">
+                <div><b>01</b><p><strong>Arquitetura:</strong> escolha dos componentes, pools de agents e política de escala.</p></div>
+                <div><b>02</b><p><strong>Implementação:</strong> IaC do cluster, Helm charts dos agents e configuração de KEDA e Karpenter.</p></div>
+                <div><b>03</b><p><strong>Operação:</strong> métricas, alertas, runbooks e onboarding dos primeiros times.</p></div>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="arquitetura">
+              <p class="section-number">04 · Arquitetura</p>
+              <h2>Fila → KEDA → pods → Karpenter → nós.</h2>
+              <p>O fluxo começa na fila do Azure DevOps. O KEDA lê essa fila e escala os pods de agents. Quando não há nós suficientes, o Karpenter provisiona capacidade adicional. Ao encerrar, tudo é devolvido.</p>
+              <figure class="content-image">
+                <img src="../assets/projetos/arquitetura-agents-escalaveis.svg" alt="Diagrama da escala dinâmica de agents">
+                <figcaption>Figura 1 — Fluxo de escala. Substitua em <code>assets/projetos/arquitetura-agents-escalaveis.svg</code>.</figcaption>
+              </figure>
+              <h3>Componentes principais</h3>
+              <div class="tech-grid">
+                <article><h4>EKS</h4><p>Cluster gerenciado com pools dedicados aos agents e isolamento por namespace.</p></article>
+                <article><h4>Karpenter</h4><p>Provisionamento de nós conforme demanda, com escolha do instance type mais eficiente.</p></article>
+                <article><h4>KEDA</h4><p>Escala pods de agents com base no tamanho da fila do Azure DevOps.</p></article>
+                <article><h4>Azure DevOps</h4><p>Pipelines existentes seguem apontando para os pools autoescaláveis.</p></article>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="implementacao">
+              <p class="section-number">05 · Implementação</p>
+              <h2>Piloto controlado, evolução iterativa.</h2>
+              <p>Começamos por um pool com carga previsível para validar o comportamento de escala. A cada rodada, ajustamos limites, requests, timeouts e políticas de instance type.</p>
+              <ol class="steps">
+                <li><span>1</span><div><h3>Cluster e pools</h3><p>Cluster EKS com IAM, redes e node groups específicos para agents.</p></div></li>
+                <li><span>2</span><div><h3>Karpenter</h3><p>Configuração de provisioners com preferência por tipos elegíveis à carga.</p></div></li>
+                <li><span>3</span><div><h3>KEDA</h3><p>ScaledObjects por pool, com métricas da fila do Azure DevOps.</p></div></li>
+                <li><span>4</span><div><h3>Onboarding</h3><p>Migração progressiva dos pipelines para os pools autoescaláveis.</p></div></li>
+              </ol>
+              <figure class="content-image compact">
+                <img src="../assets/projetos/implementacao-placeholder.svg" alt="Screenshot ilustrativo de um dashboard de escala">
+                <figcaption>Figura 2 — Insira um print de um gráfico de escala ou uma métrica real (sem dados sensíveis).</figcaption>
+              </figure>
+            </section>
+
+            <section class="story-block reveal" id="decisoes">
+              <p class="section-number">06 · Decisões técnicas</p>
+              <h2>Onde priorizamos performance e onde priorizamos custo.</h2>
+              <p>Cada escolha teve consequências operacionais claras — documentar isso ajuda futuras rodadas de otimização.</p>
+              <div class="decision-table" role="table" aria-label="Decisões técnicas">
+                <div class="decision-row decision-head" role="row"><span>Decisão</span><span>Motivação</span><span>Trade-off</span></div>
+                <div class="decision-row" role="row"><span>Karpenter em vez de ASGs manuais</span><span>Escala rápida e escolha eficiente de instance type.</span><span>Requer entendimento das políticas para evitar surpresas.</span></div>
+                <div class="decision-row" role="row"><span>KEDA baseado em fila</span><span>Sinal direto da demanda real.</span><span>Requer permissões para acesso à API da fila.</span></div>
+                <div class="decision-row" role="row"><span>Pods efêmeros por job</span><span>Isolamento e reprodutibilidade.</span><span>Tempo adicional de setup por execução.</span></div>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="resultados">
+              <p class="section-number">07 · Resultados</p>
+              <h2>Menos fila, menos ociosidade.</h2>
+              <p>Os principais ganhos aparecem em picos de release e fora do expediente. A operação passou a ter uma curva de custo alinhada com a curva de uso.</p>
+              <div class="results-grid">
+                <article><strong>Elasticidade</strong><p>Capacidade adicional em minutos, sem intervenção manual.</p></article>
+                <article><strong>Eficiência</strong><p>Menos capacidade ociosa fora dos horários de pico.</p></article>
+                <article><strong>Observabilidade</strong><p>Métricas de fila, tempo médio de start e utilização por pool.</p></article>
+              </div>
+            </section>
+
+            <section class="story-block reveal" id="aprendizados">
+              <p class="section-number">08 · Aprendizados</p>
+              <h2>Escalar bem é escalar com sinal.</h2>
+              <p>O maior aprendizado foi definir qual sinal usar para escalar. O tamanho da fila se mostrou mais preciso do que métricas indiretas de CPU.</p>
+              <ul class="check-list warm-list">
+                <li>Simular picos antes de ligar produção evita surpresa depois.</li>
+                <li>Definir bons SLOs internos para tempo de start dos pods.</li>
+                <li>Investir em observabilidade cedo compensa em cada iteração.</li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <footer class="next-project">
+        <div class="container next-project-inner reveal">
+          <div><p>Próximo estudo de caso</p><h2>Primeiro Cluster EKS da Alelo</h2></div>
+          <a class="circle-link" href="primeiro-cluster-eks.html" aria-label="Abrir próximo projeto">→</a>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="../index.html"><img src="../assets/projetos/logo.svg" alt="" width="38" height="38"><span><strong>Felipe Maeda</strong><small>Cloud Architect</small></span></a>
+      <p>© <span id="current-year"></span> Felipe Shinji Maeda.</p>
+      <a href="#topo">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+</body>
+</html>

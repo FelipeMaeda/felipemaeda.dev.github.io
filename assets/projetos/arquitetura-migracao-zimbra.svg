@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Arquitetura Migração Zimbra">
+  <rect width="1200" height="720" fill="#f5f3ef"/>
+  <!-- Origin -->
+  <g fill="#fff" stroke="#1d1d1b" stroke-width="2">
+    <rect x="80" y="200" width="380" height="320" rx="6"/>
+  </g>
+  <text x="105" y="235" font-family="Arial,sans-serif" font-size="14" fill="#b85c3f" letter-spacing="2">ORIGEM · AWS</text>
+  <text x="105" y="270" font-family="Arial,sans-serif" font-size="20" fill="#1d1d1b">Clusters Zimbra em EC2</text>
+  <g fill="#dedbd4" stroke="#1d1d1b">
+    <rect x="110" y="300" width="140" height="60" rx="4"/>
+    <rect x="270" y="300" width="140" height="60" rx="4"/>
+    <rect x="110" y="380" width="140" height="60" rx="4"/>
+    <rect x="270" y="380" width="140" height="60" rx="4"/>
+  </g>
+  <g font-family="Arial,sans-serif" fill="#1d1d1b" font-size="14" text-anchor="middle">
+    <text x="180" y="337">Mailstore</text>
+    <text x="340" y="337">Proxy</text>
+    <text x="180" y="417">LDAP</text>
+    <text x="340" y="417">MTA</text>
+  </g>
+  <text x="270" y="490" font-family="Arial,sans-serif" font-size="14" fill="#666761" text-anchor="middle">Backup completo e replicação incremental</text>
+  <!-- Migration bridge -->
+  <g fill="none" stroke="#b85c3f" stroke-width="3" stroke-dasharray="10 8">
+    <path d="M460 360 L740 360"/>
+  </g>
+  <polygon points="740 350, 770 360, 740 370" fill="#b85c3f"/>
+  <text x="600" y="335" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" fill="#b85c3f" letter-spacing="2">JANELA DE MIGRAÇÃO</text>
+  <text x="600" y="395" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#666761">Sync progressivo · corte planejado</text>
+  <!-- Destination -->
+  <g fill="#fff" stroke="#1d1d1b" stroke-width="2">
+    <rect x="780" y="200" width="340" height="320" rx="6"/>
+  </g>
+  <text x="805" y="235" font-family="Arial,sans-serif" font-size="14" fill="#b85c3f" letter-spacing="2">DESTINO · NUVEM HÍBRIDA</text>
+  <text x="805" y="270" font-family="Arial,sans-serif" font-size="20" fill="#1d1d1b">Nova plataforma Zimbra</text>
+  <g fill="#dedbd4" stroke="#1d1d1b">
+    <rect x="810" y="300" width="140" height="60" rx="4"/>
+    <rect x="970" y="300" width="140" height="60" rx="4"/>
+    <rect x="810" y="380" width="140" height="60" rx="4"/>
+    <rect x="970" y="380" width="140" height="60" rx="4"/>
+  </g>
+  <g font-family="Arial,sans-serif" fill="#1d1d1b" font-size="14" text-anchor="middle">
+    <text x="880" y="337">Mailstore</text>
+    <text x="1040" y="337">Proxy</text>
+    <text x="880" y="417">LDAP</text>
+    <text x="1040" y="417">MTA</text>
+  </g>
+  <text x="965" y="490" font-family="Arial,sans-serif" font-size="14" fill="#666761" text-anchor="middle">Rollback preparado até estabilização</text>
+  <text x="600" y="680" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" fill="#666761">FIGURA 1 · CORTE COORDENADO ENTRE ORIGEM E DESTINO</text>
+</svg>
